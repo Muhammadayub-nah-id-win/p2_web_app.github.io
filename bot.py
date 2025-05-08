@@ -2,18 +2,16 @@ import asyncio
 from os import getenv
 
 from aiogram import Bot, Dispatcher
-from aiogram.filters import Command
-from aiogram.types import Message
+from dotenv import load_dotenv
+from commands import router as commands_router
 
+load_dotenv()
 TOKEN = getenv("BOT_TOKEN")
 
 dp = Dispatcher()
+dp.include_router(commands_router)
 
 
-# Command handler
-@dp.message(Command("start"))
-async def command_start_handler(message: Message) -> None:
-    await message.answer("Hello! I'm a bot created with aiogram. But I'm so giga Bot!")
 
 
 # Run the bot
